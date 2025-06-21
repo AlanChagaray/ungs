@@ -1,0 +1,121 @@
+COMANDOS UTILES
+
+
+PC
+	
+	Config/IP Address 			--> <ip>
+	Config/Default gateway 		--> <ip-router> mas cercano
+	
+
+ROUTER
+	CLI/
+	Router> enable 											--> modo administrador
+	Router# configure terminal  							--> modo configuración
+	Router(config)# hostname <nombre>						--> nombre (opcional)
+	<nombre>(config)# interface GigabitEthernet 0/0 		--> configurar placa interfaz
+	<nombre>(config-if)# ip address <ip> <mascara de subred> --> configurar ip
+	<nombre>(config-if)# Description <descripción>			--> descripcion interfaz (opcional)
+	<nombre>(config-if)# no shutdown  						--> levantar placa interface
+	
+	** chequear en PC con ping **
+	
+	<nombre>(config-if)#exit
+	<nombre>(config)#
+	<nombre># copy run startup-config 						--> copiar configuracion de la memoria al archivo [statup-config] del router
+	<nombre># shop ip interface brief 						--> ver configuración
+
+ENRUTAMIENTO
+
+	CONFIGURACIÓN ROUTERS
+		CLI/
+		<nombre>> enable 										
+		<nombre># configure terminal  							
+		<nombre>(config)# interface Serial 03/0			 		
+		<nombre>(config-if)# ip address <ip-router> <mascara de subred> --> configurar ip
+		<nombre>(config-if)# Description <descripción>			--> descripcion interfaz (opcional)
+		
+		** configurar sincronización reloj (solo es necesario en un solo router)**
+			<nombre>(config-if)# clock rate 6400				--> por defecto
+		** finaliza configuración reloj **
+		
+		(configurar todos los routes antes comando [no shutdown])
+		
+		<nombre>(config-if)# no shutdown  						--> levantar placa interfaz
+		<nombre>(config-if)#exit
+		<nombre>(config)#
+		<nombre># copy run startup-config 	
+		
+	CONFIGURACIÓN NODOS
+		CLI/
+		<nombre>> enable 
+		<nombre># show ip route  								--> tabla de ruteo
+			C - 												--> directamente conectado
+			R -													--> direccion aprendida por protocolo RIP
+		<nombre># configure terminal
+		<nombre>(config)# router								--> protocolo de enrutamiento
+		<nombre>(config)# router rip 							--> modo protocolo RIP
+		<nombre>(config-router)# version 2  					--> distingue las mascaras de subneteo
+		<nombre>(config-router)# network <ip-red> <ip-red>		--> publicar las redes conectadas directamente
+		<nombre>(config-router)#exit
+		<nombre># copy run startup-config 	
+		<nombre>(config)#
+		
+		** chequear en ROUTER/PC con ping **
+		
+		<nombre>> enable 
+		<nombre>(config)# debug ip rip 							--> muestra tabla de ruteo actualizada
+	
+	
+SWITCH VLAN
+	CLI/
+	Switch> enable
+	Switch# configure terminal
+	Switch(config)# vlan 10
+	Switch(config-vlan)# <name> vlan10
+	Switch(config-vlan)# exit
+	Switch(config)#
+	
+	** Conectar a un puerto nodo **
+
+	Switch(config)#	interface FastEthernet0/1					--> conectar nodo a vlan
+	Switch(config)# switchport mode access
+	Switch(config)# switchport access vlan 10
+	Switch(config)# exit
+	Switch# (config)#
+	Switch# show vlan brief --> ver estados de puertos
+	Switch# copy run startup-config 	
+	
+	** repetir proceso por cantidad de nodos **
+
+	CONFIGURAR NODO VLAN
+		** Ejemplo vlan10
+		
+		/IPv4Address xxxx.xxxx.10(vlan).xxxx
+	
+SERVIDORES 
+
+DNS/WEB
+	/DESKTOP/IP CONFIGURATION
+	IPv4Address: 
+	Subnet MAsk:
+	Default Gateway:
+	DNS Server:
+
+DNS
+	/SERVICES/DNS
+	Name : www.ejemplo.com
+	Access : <ip-servidorweb>
+	
+
+CONFIGURAR NODO SERVIDOR DNS
+	/DESKTOP/IP CONFIGURATION
+	DNS server : <ip-server-dns>
+		
+	** chequear servidor DNS **
+	/DESKTOP/WEB BROWSER
+	URL : www.ejemplo.com
+	
+
+
+
+
