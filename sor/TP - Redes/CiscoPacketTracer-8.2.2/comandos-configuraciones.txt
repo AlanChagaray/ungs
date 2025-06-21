@@ -22,7 +22,7 @@ ROUTER
 	<nombre>(config-if)#exit
 	<nombre>(config)#
 	<nombre># copy run startup-config 						--> copiar configuracion de la memoria al archivo [statup-config] del router
-	<nombre># shop ip interface brief 						--> ver configuración
+	<nombre># show ip interface brief 						--> ver configuración
 
 ENRUTAMIENTO
 

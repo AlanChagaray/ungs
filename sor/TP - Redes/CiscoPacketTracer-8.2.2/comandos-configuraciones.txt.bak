@@ -3,8 +3,8 @@ COMANDOS UTILES
 
 PC
 	
-	Config/IP Address 			--> dirección ip
-	Config/Default gateway 		--> dirección router protocolo RIP
+	Config/IP Address 			--> <ip>
+	Config/Default gateway 		--> <ip-router> mas cercano
 	
 
 ROUTER
