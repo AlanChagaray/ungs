@@ -65,7 +65,21 @@ ENRUTAMIENTO
 		<nombre>> enable 
 		<nombre>(config)# debug ip rip 							--> muestra tabla de ruteo actualizada
 	
-	
+ROUTER VLAN (2911)
+		CLI/
+		<nombre>> enable 										
+		<nombre># configure terminal  							
+		<nombre>(config)# interface GigabitEthernet 0/0.<numero-vlan>
+		<nombre>(config-subif)# encapsulation dot1Q <numero-vlan>
+		<nombre>(config-subif)# ip address <ip-gateway> <ip-mascara-subred>
+
+		** repetir configurar por cantidad de N-vlan **
+		
+		<nombre>(config)# interface GigabitEthernet 0/0
+		<nombre>(config-if)# no shutdown 		
+		<nombre>(config-if)#exit
+		<nombre># copy run startup-config 
+
 SWITCH VLAN
 	CLI/
 	Switch> enable
@@ -91,6 +105,15 @@ SWITCH VLAN
 		** Ejemplo vlan10
 		
 		/IPv4Address xxxx.xxxx.10(vlan).xxxx
+		
+SWITCH-ROUTER VLAN TRONCAL
+	CLI/
+	Switch> enable
+	Switch# configure terminal
+	Switch(config)# interface GigabitEthernet0/1
+	Switch(config)# switchport mode trunk
+	
+	
 	
 SERVIDORES 
 
