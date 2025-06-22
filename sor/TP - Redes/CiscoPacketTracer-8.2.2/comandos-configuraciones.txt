@@ -104,7 +104,7 @@ SWITCH VLAN
 	CONFIGURAR NODO VLAN
 		** Ejemplo vlan10
 		
-		/IPv4Address : xxxx.xxxx.10(vlan).<ip>
+		/IPv4Address : xxxx.xxxx.10(vlan).<nro-host>
 		/Default Gateway : xxxx.xxxx.10(vlan).xxxx
 		
 SWITCH-ROUTER VLAN TRONCAL
