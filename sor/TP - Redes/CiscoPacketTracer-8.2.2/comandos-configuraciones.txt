@@ -96,15 +96,16 @@ SWITCH VLAN
 	Switch(config)# switchport access vlan 10
 	Switch(config)# exit
 	Switch# (config)#
-	Switch# show vlan brief --> ver estados de puertos
+	Switch# show vlan brief 									--> ver estados de puertos
 	Switch# copy run startup-config 	
 	
-	** repetir proceso por cantidad de nodos **
+	** repetir proceso por cantidad subred **
 
 	CONFIGURAR NODO VLAN
 		** Ejemplo vlan10
 		
-		/IPv4Address xxxx.xxxx.10(vlan).xxxx
+		/IPv4Address : xxxx.xxxx.10(vlan).<ip>
+		/Default Gateway : xxxx.xxxx.10(vlan).xxxx
 		
 SWITCH-ROUTER VLAN TRONCAL
 	CLI/
